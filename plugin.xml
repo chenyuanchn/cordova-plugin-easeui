@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.xc.plugin.easemob" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>Easemob</name>
+	<preference name="APP_KEY" />
+	<js-module name="Easemob" src="www/Easemob.js">
+		<clobbers target="cordova.plugins.Easemob" />
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="Easemob">
+				<param name="android-package" value="com.xc.plugin.easemob.Easemob" />
+			</feature>
+		</config-file>
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+        <uses-permission android:name="android.permission.VIBRATE" />
+		    <uses-permission android:name="android.permission.INTERNET" />
+		    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+		    <uses-permission android:name="android.permission.CAMERA" />
+		    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+		    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+		    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+		    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+		    <uses-permission android:name="android.permission.GET_TASKS" />
+		    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+		    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+		    <uses-permission android:name="android.permission.WAKE_LOCK" />
+		    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+		    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <activity android:name="com.xc.plugin.easemob.ChatActivity"></activity>
+        <activity android:name="com.xc.plugin.easemob.ContactListActivity"></activity>
+        <activity android:name="com.xc.plugin.easemob.ConversationListActivity"></activity>
+	    	<meta-data android:name="EASEMOB_APPKEY"  android:value="$APP_KEY" />
+	    	<service android:name="com.easemob.chat.EMChatService" />
+        </config-file>
+
+		<source-file src="src/android/libs/arm64-v8a/libBaiduMapSDK_base_v3_6_1.so" target-dir="libs/arm64-v8a" />
+		<source-file src="src/android/libs/arm64-v8a/libBaiduMapSDK_map_v3_6_1.so" target-dir="libs/arm64-v8a" />
+		<source-file src="src/android/libs/arm64-v8a/libBaiduMapSDK_util_v3_6_1.so" target-dir="libs/arm64-v8a" />
+		<source-file src="src/android/libs/arm64-v8a/libhyphenate.so" target-dir="libs/arm64-v8a" />
+		<source-file src="src/android/libs/arm64-v8a/libhyphenate_av.so" target-dir="libs/arm64-v8a" />
+		<source-file src="src/android/libs/arm64-v8a/liblocSDK6a.so" target-dir="libs/arm64-v8a" />
+
+		<source-file src="src/android/libs/armeabi/libBaiduMapSDK_base_v3_6_1.so" target-dir="libs/armeabi" />
+		<source-file src="src/android/libs/armeabi/libBaiduMapSDK_map_v3_6_1.so" target-dir="libs/armeabi" />
+		<source-file src="src/android/libs/armeabi/libBaiduMapSDK_util_v3_6_1.so" target-dir="libs/armeabi" />
+		<source-file src="src/android/libs/armeabi/libhyphenate.so" target-dir="libs/armeabi" />
+		<source-file src="src/android/libs/armeabi/libhyphenate_av.so" target-dir="libs/armeabi" />
+		<source-file src="src/android/libs/armeabi/liblocSDK6a.so" target-dir="libs/armeabi" />
+
+		<source-file src="src/android/libs/x86/libhyphenate.so" target-dir="libs/x86" />
+		<source-file src="src/android/libs/x86/libhyphenate_av.so" target-dir="libs/x86" />
+
+		<source-file src="src/android/libs/android-support-v4.jar" target-dir="libs" />
+		<source-file src="src/android/libs/BaiduLBS_Android.jar" target-dir="libs" />
+		<source-file src="src/android/libs/glide-3.6.1.jar" target-dir="libs" />
+		<source-file src="src/android/libs/google-play-services.jar" target-dir="libs" />
+		<source-file src="src/android/libs/hyphenatechat_3.1.2.jar" target-dir="libs" />
+		<source-file src="src/android/libs/MiPush_SDK_Client_2_2_19.jar" target-dir="libs" />
+		<source-file src="src/android/libs/org.apache.http.legacy.jar" target-dir="libs" />
+
+		<source-file src="src/android/hyphenate" target-dir="src/com" />
+		<source-file src="src/android/Easemob.java" target-dir="src/com/xc/plugin/easemob" />
+		<source-file src="src/android/ChatActivity.java" target-dir="src/com/xc/plugin/easemob" />
+		<source-file src="src/android/ContactListActivity.java" target-dir="src/com/xc/plugin/easemob" />
+		<source-file src="src/android/ConversationListActivity.java" target-dir="src/com/xc/plugin/easemob" />
+	
+
+		<source-file src="src/android/res/anim/fade_in.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/fade_out.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/head_in.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/head_out.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/hold.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/push_bottom_in.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/push_bottom_out.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/push_top_in.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/push_top_in2.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/push_top_out.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/push_top_out2.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/slide_in_from_left.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/slide_in_from_right.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/slide_out_to_left.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/slide_out_to_right.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/voice_from_icon.xml" target-dir="res/anim" />
+		<source-file src="src/android/res/anim/voice_to_icon.xml" target-dir="res/anim" />
+
+		<source-file src="src/android/res/drawable/ease_btn_blue_normal_shape.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_btn_blue_pressed_shape.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_btn_blue_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_btn_cancel_bj.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_btn_cancel_normal_shape.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_btn_cancel_pressed_shape.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_chat_image_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_chat_location_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_chat_press_speak_btn.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_chat_send_btn_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_chat_takepic_selector.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_chatfrom_bg.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_chatting_setmode_keyboard_btn.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_chatting_setmode_voice_btn.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_chatto_bg.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_common_tab_bg.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_edit_text_bg.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_mm_listitem.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_mm_listitem_grey.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_msg_state_failed_resend.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_recording_hint_bg.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_recording_text_hint_bg.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_search_clear.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_sidebar_background_pressed.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_timestampe_bg.xml" target-dir="res/drawable" />
+		<source-file src="src/android/res/drawable/ease_type_select_btn.xml" target-dir="res/drawable" />
+
+		<source-file src="src/android/res/drawable-hdpi/ease_app_panel_video_icon.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_appitem_del_btn_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_appitem_del_btn_pressed.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chat_face_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chat_face_pressed.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chat_video_mask_to.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatfrom_bg_focused.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatfrom_bg_normal.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatfrom_voice_playing.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatfrom_voice_playing_f1.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatfrom_voice_playing_f2.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatfrom_voice_playing_f3.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatting_biaoqing_btn_enable.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatting_biaoqing_btn_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatting_setmode_keyboard_btn_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatting_setmode_keyboard_btn_pressed.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatting_setmode_voice_btn_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatting_setmode_voice_btn_pressed.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatto_bg_focused.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatto_bg_normal.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatto_voice_playing.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatto_voice_playing_f1.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatto_voice_playing_f2.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_chatto_voice_playing_f3.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_contact_list_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_contact_list_selected.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_conversation_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_conversation_selected.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_default_avatar.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_default_image.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_dx_checkbox_gray_on.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_dx_checkbox_off.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_dx_checkbox_on.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_groups_icon.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_ic_launcher.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_icon_marka.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_input_bar_bg_active.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_input_bar_bg_normal.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_location_msg.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_login_error_icon.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_mm_listitem_disable.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_mm_listitem_grey_normal.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_mm_listitem_pressed.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_mm_listitem_simple.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_mm_title_back.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_mm_title_remove.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_msg_state_fail_resend.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_msg_state_fail_resend_pressed.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_new_friends_icon.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_01.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_02.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_03.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_04.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_05.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_06.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_07.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_08.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_09.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_10.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_11.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_12.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_13.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_record_animate_14.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_seabar_input.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_search_bar_icon_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_search_clear_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_search_clear_pressed.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_settings_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_settings_selected.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_show_head_toast_bg.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_slidetab_bg_press.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_to_group_details_normal.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_type_select_btn_nor.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_type_select_btn_pressed.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_unread_count_bg.9.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_video_download_btn_nor.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_video_play_btn_small_nor.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_video_recorder_start_btn.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_video_recorder_stop_btn.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ease_voice_unread.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_1.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_10.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_11.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_12.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_13.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_14.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_15.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_16.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_17.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_18.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_19.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_2.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_20.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_21.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_22.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_23.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_24.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_25.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_26.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_27.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_28.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_29.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_3.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_30.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_31.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_32.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_33.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_34.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_35.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_4.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_5.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_6.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_7.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_8.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/res/drawable-hdpi/ee_9.png" target-dir="res/drawable-hdpi" />
+		
+
+		<source-file src="src/android/res/drawable-xhdpi/delete_expression.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_app_panel_video_icon.9.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_back.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_blue_add.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_edit_normal.9.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_face_normal.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_face_pressed.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_image_normal.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_image_pressed.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_item_file.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_location_normal.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_location_pressed.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_press_speak_btn_normal.9.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_press_speak_btn_pressed.9.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_send_btn_normal.9.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_send_btn_pressed.9.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_takepic_normal.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_takepic_pressed.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_video_call_receive.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_video_call_self.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_voice_call_receive.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chat_voice_call_self.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chatting_biaoqing_btn_enable.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_chatting_biaoqing_btn_normal.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_close_icon.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_default_avatar.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_default_expression.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_delete_expression.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_dot_emojicon_selected.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_dot_emojicon_unselected.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_group_icon.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_groups_icon.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_mm_title_remove.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_new_friends_icon.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_open_icon.png" target-dir="res/drawable-xhdpi" />
+		<source-file src="src/android/res/drawable-xhdpi/ease_unread_dot.9.png" target-dir="res/drawable-xhdpi" />
+
+		<source-file src="src/android/res/layout/ease_activity_baidumap.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_activity_show_big_image.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_activity_show_file.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_alert_dialog.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_chat_menu_item.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_chat_message_list.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_commom_back_btn.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_conversation_item.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_emojicon.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_expression_gridview.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_fragment_chat.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_fragment_contact_list.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_fragment_conversation_list.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_layout_chat_primary_menu.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_layout_emojicon_menu.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_big_expression.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_chat_history.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_contact.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_expression.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_received_bigexpression.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_received_file.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_received_location.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_received_message.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_received_picture.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_received_video.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_received_video_call.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_received_voice.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_received_voice_call.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_sent_bigexpression.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_sent_file.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_sent_location.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_sent_message.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_sent_picture.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_sent_video.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_sent_video_call.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_sent_voice.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_row_sent_voice_call.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_scroll_tab_item.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_search_bar.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_search_bar_with_padding.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_showvideo_activity.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_widget_chat_input_menu.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_widget_chat_primary_menu.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_widget_contact_list.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_widget_emojicon.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_widget_emojicon_tab_bar.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_widget_switch_button.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_widget_title_bar.xml" target-dir="res/layout" />
+		<source-file src="src/android/res/layout/ease_widget_voice_recorder.xml" target-dir="res/layout" />
+
+		<source-file src="src/android/res/values/ease_attrs.xml" target-dir="res/values" />
+		<source-file src="src/android/res/values/ease_colors.xml" target-dir="res/values" />
+		<source-file src="src/android/res/values/ease_dimens.xml" target-dir="res/values" />
+		<source-file src="src/android/res/values/ease_strings.xml" target-dir="res/values" />
+		<source-file src="src/android/res/values/ease_styles.xml" target-dir="res/values" />
+
+		<source-file src="src/android/res/values-large/ease_dimens.xml" target-dir="res/values-large" />
+		
+		<source-file src="src/android/res/values-ru-rRU/ease_strings.xml" target-dir="res/values-large" />
+
+		<source-file src="src/android/res/values-v11/ease_styles.xml" target-dir="res/values-v11" />
+
+		<source-file src="src/android/res/values-w820dp/ease_dimens.xml" target-dir="res/values-w820dp" />
+
+		<source-file src="src/android/res/values-xlarge/ease_dimens.xml" target-dir="res/values-xlarge" />
+
+		<source-file src="src/android/res/values-zh-rCN/ease_strings.xml" target-dir="res/values-zh-rCN" />
+		
+		
+		<source-file src="src/android/res/layout/activity_chat.xml" target-dir="res/layout" />
+			
+	</platform>
+</plugin>
