@@ -16,7 +16,9 @@
 
 ###Cordova/Phonegap 安装 （现仅支持Android。ios版本正在开发）
 
-   cordova plugin add https://github.com/chenyuanchn/cordova-plugin-easeui.git
+   在线：cordova plugin add https://github.com/chenyuanchn/cordova-plugin-easeui.git --variable APP_KEY=value
+    
+   因为插件包很大，推荐下载后再进行安装cordova plugin add 插件目录 --variable APP_KEY=value
     
    安装完毕后修改包里所有的.R 改为自己项目路径
     
