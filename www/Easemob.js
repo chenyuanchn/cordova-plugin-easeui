@@ -8,7 +8,7 @@ exports.login = function(userName, password, success, error) {
     exec(success, error, "Easemob", "login", [userName, password]);
 };
 
-exports.chat = function(extraChatType,extraUserId, success, error) {
+exports.chat = function(extraUserId,extraChatType, success, error) {
     exec(success, error, "Easemob", "chat", [extraUserId, extraChatType]);
 };
 exports.contactList = function(arg0, success, error) {

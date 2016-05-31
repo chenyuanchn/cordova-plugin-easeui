@@ -100,7 +100,7 @@ public class Easemob extends CordovaPlugin {
                  return false;
             }
             
-            if(extraUserId!=null&&!extraUserId.equals("")&&!extraUserId.equals("null")){
+            if(extraChatType!=null&&!extraChatType.equals("")&&!extraChatType.equals("null")){
             	intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, extraChatType);  
            }
             intent.putExtra(EaseConstant.EXTRA_USER_ID, extraUserId);  
