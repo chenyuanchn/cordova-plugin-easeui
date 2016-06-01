@@ -1,6 +1,6 @@
 ## cordova-plugin-easeui ##
 
-### 本cordova插件是基于easeui和环信sdk3.0的简单demo
+### 本cordova插件是基于easeui和环信sdk3.0（无实时语音、实时视频功能的SDK包）的简单demo
 
 ###感谢
 		本代码是根据evicord的Easemob和EasemobPlugin插件进行的修改
@@ -21,6 +21,8 @@
    因为插件包很大，推荐下载后再进行安装cordova plugin add 插件目录 --variable APP_KEY=value
     
    安装完毕后修改包里所有的.R 改为自己项目路径
+    
+   需要去掉ui里的title，请在AndroidManifest.xml里的application中加入android:theme="@android:style/Theme.NoTitleBar" 
     
    如果还不能使用，请调整android:targetSdkVersion为20以下
    

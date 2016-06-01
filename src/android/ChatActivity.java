@@ -10,7 +10,7 @@ import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.hyphenate.easeui.ui.EaseChatFragment;
-import com.xc.test.R;
+import com.xc.smemobile.R;
 
 public class ChatActivity extends EaseBaseActivity{
 
