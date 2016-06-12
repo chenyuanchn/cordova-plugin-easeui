@@ -20,7 +20,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessage.ChatType;
 import com.hyphenate.chat.EMVoiceMessageBody;
-import com.xc.test.R;
+import com.xc.smemobile.R;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.util.EMLog;
 

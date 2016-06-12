@@ -3,7 +3,7 @@ package com.hyphenate.easeui.widget.emojicon;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xc.test.R;
+import com.xc.smemobile.R;
 import com.hyphenate.util.DensityUtil;
 
 import android.R.integer;

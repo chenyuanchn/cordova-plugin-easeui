@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.xc.test.R;
+import com.xc.smemobile.R;
 
 /**
  * 聊天输入栏主菜单栏

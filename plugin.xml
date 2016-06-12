@@ -34,15 +34,42 @@
         <activity android:name="com.xc.plugin.easemob.ConversationListActivity"></activity>
 	    	<meta-data android:name="EASEMOB_APPKEY"  android:value="$APP_KEY" />
 	    	<service android:name="com.easemob.chat.EMChatService" />
+	     <!-- 地图 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" >
+        </activity>	
+         <!-- 百度地图所需的service -->
+        <service
+            android:name="com.baidu.location.f" 
+            android:enabled="true"
+            android:process=":remote" />
+        <!-- umeng appkey，可忽略 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="56aefe07e0f55a250d001a7c" >
+        </meta-data>
+        <meta-data android:value="hyphenate" android:name="UMENG_CHANNEL"/>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="3ecea51f560650b1ed8a4b99808f52e8" />
         </config-file>
 
 		<source-file src="src/android/libs/arm64-v8a/libhyphenate.so" target-dir="libs/arm64-v8a" />
+		<source-file src="src/android/libs/arm64-v8a/libBaiduMapSDK_base_v3_6_1.so" target-dir="libs/arm64-v8a" />
+		<source-file src="src/android/libs/arm64-v8a/libBaiduMapSDK_map_v3_6_1.so" target-dir="libs/arm64-v8a" />
+		<source-file src="src/android/libs/arm64-v8a/libBaiduMapSDK_util_v3_6_1.so" target-dir="libs/arm64-v8a" />
 
 		<source-file src="src/android/libs/armeabi/libhyphenate.so" target-dir="libs/armeabi" />
+		<source-file src="src/android/libs/armeabi/libBaiduMapSDK_base_v3_6_1.so" target-dir="libs/armeabi" />
+		<source-file src="src/android/libs/armeabi/libBaiduMapSDK_map_v3_6_1.so" target-dir="libs/armeabi" />
+		<source-file src="src/android/libs/armeabi/libBaiduMapSDK_util_v3_6_1.so" target-dir="libs/armeabi" />
 
 		<source-file src="src/android/libs/x86/libhyphenate.so" target-dir="libs/x86" />
 
 		<source-file src="src/android/libs/android-support-v4.jar" target-dir="libs" />
+		<source-file src="src/android/libs/BaiduLBS_Android.jar" target-dir="libs" />
 		<source-file src="src/android/libs/glide-3.6.1.jar" target-dir="libs" />
 		<source-file src="src/android/libs/hyphenatechat_3.1.2.jar" target-dir="libs" />
 		<source-file src="src/android/libs/org.apache.http.legacy.jar" target-dir="libs" />

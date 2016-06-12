@@ -12,7 +12,7 @@ import com.hyphenate.EMError;
 import com.hyphenate.chat.EMChatManager;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
-import com.xc.test.R;
+import com.xc.smemobile.R;
 import com.hyphenate.easeui.widget.EaseConversationList;
 
 import android.content.Context;

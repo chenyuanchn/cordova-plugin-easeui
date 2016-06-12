@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.xc.test.R;
+import com.xc.smemobile.R;
 
 /**
  * 标题栏

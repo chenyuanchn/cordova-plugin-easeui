@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
-import com.xc.test.R;
+import com.xc.smemobile.R;
 import com.hyphenate.easeui.adapter.EaseConversationAdapater;
 
 import android.content.Context;

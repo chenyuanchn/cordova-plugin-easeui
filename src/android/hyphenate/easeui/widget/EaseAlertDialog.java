@@ -21,7 +21,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.xc.test.R;
+import com.xc.smemobile.R;
 
 
 public class EaseAlertDialog extends Dialog {

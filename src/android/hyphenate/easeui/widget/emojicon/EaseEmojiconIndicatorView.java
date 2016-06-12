@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.xc.test.R;
+import com.xc.smemobile.R;
 import com.hyphenate.util.DensityUtil;
 
 @SuppressLint("NewApi")

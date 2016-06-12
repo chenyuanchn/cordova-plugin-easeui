@@ -4,7 +4,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMLocationMessageBody;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessage.ChatType;
-import com.xc.test.R;
+import com.xc.smemobile.R;
 import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.LatLng;
