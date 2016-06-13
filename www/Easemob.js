@@ -18,3 +18,19 @@ exports.contactList = function(arg0, success, error) {
 exports.conversationList = function(arg0, success, error) {
     exec(success, error, "Easemob", "conversationList", [arg0]);
 };
+
+exports.addMessageListener = function(arg0, success, error) {
+    exec(success, error, "Easemob", "addMessageListener", [arg0]);
+};
+
+exports.receiveMessageInAndroidCallback = function(data) {
+	try{
+		console.log("cordova.plugins.Easemob.receiveMessageInAndroidCallback");
+		data = JSON.stringify(data);
+		var bToObj = JSON.parse(data);
+		//this.receiveNotification = bToObj;
+		//cordova.fireDocumentEvent('cordova.plugins.Easemob.receiveNotification', null);
+	} catch(exception) {
+		console.log(exception);
+	}
+};

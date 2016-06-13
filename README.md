@@ -23,7 +23,7 @@
     
    需要去掉ui里的title，请在AndroidManifest.xml里的application中加入android:theme="@android:style/Theme.NoTitleBar" 
     
-   如果还不能使用，请调整android:targetSdkVersion为20以下
+   注意：请调整android:targetSdkVersion为19及以下
    
 ### 支持平台
 
@@ -45,6 +45,16 @@
   	cordova.plugins.Easemob.contactList(null,function(e){console.log(e);},function(e){console.log(e);});
 		//会话列表
   	cordova.plugins.Easemob.conversationList(null,function(e){console.log(e);},function(e){console.log(e);});
-
-  
+		
+		
+		//以下是无ui 仅仅sdk的一些方法
+		
+		//注册接收消息监听
+		cordova.plugins.Easemob.addMessageListener(null,function(e){console.log(e);},function(e){console.log(e);});
+		cordova.plugins.Easemob.receiveMessageInAndroidCallback = function(data){
+    	//对取回的消息信息进行处理   	
+    }
+		
+	
+		  
 ```

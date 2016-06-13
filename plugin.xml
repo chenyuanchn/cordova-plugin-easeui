@@ -12,20 +12,31 @@
 			</feature>
 		</config-file>
 		<config-file target="AndroidManifest.xml" parent="/manifest">
-        <uses-permission android:name="android.permission.VIBRATE" />
-		    <uses-permission android:name="android.permission.INTERNET" />
-		    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-		    <uses-permission android:name="android.permission.CAMERA" />
-		    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-		    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-		    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-		    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-		    <uses-permission android:name="android.permission.GET_TASKS" />
-		    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-		    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-		    <uses-permission android:name="android.permission.WAKE_LOCK" />
-		    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-		    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>  
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />   
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
@@ -33,27 +44,33 @@
         <activity android:name="com.xc.plugin.easemob.ContactListActivity"></activity>
         <activity android:name="com.xc.plugin.easemob.ConversationListActivity"></activity>
 	    	<meta-data android:name="EASEMOB_APPKEY"  android:value="$APP_KEY" />
-	    	<service android:name="com.easemob.chat.EMChatService" />
-	     <!-- 地图 -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" >
-        </activity>	
-         <!-- 百度地图所需的service -->
-        <service
-            android:name="com.baidu.location.f" 
-            android:enabled="true"
-            android:process=":remote" />
-        <!-- umeng appkey，可忽略 -->
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="56aefe07e0f55a250d001a7c" >
-        </meta-data>
-        <meta-data android:value="hyphenate" android:name="UMENG_CHANNEL"/>
+	    	<service android:exported="true" android:name="com.hyphenate.chat.EMChatService" />
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity" android:screenOrientation="portrait" android:theme="@style/horizontal_slide" />
+        <service android:enabled="true" android:name="com.baidu.location.f" android:process=":remote" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="3ecea51f560650b1ed8a4b99808f52e8" />
+            android:value="3ecea51f560650b1ed8a4b99808f52e8" /> 
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" >
+        </activity>
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowNormalFileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" >
+        </activity>
+        
         </config-file>
 
 		<source-file src="src/android/libs/arm64-v8a/libhyphenate.so" target-dir="libs/arm64-v8a" />

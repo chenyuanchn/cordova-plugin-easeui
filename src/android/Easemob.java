@@ -1,12 +1,19 @@
 package com.xc.plugin.easemob;
 
 
+import java.util.HashMap;
+import java.util.List;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
 import com.hyphenate.EMCallBack;
+import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMOptions;
+import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.controller.EaseUI;
 
@@ -57,12 +64,12 @@ public class Easemob extends CordovaPlugin {
                  callback.sendPluginResult(result);
                  return false;
             }
+            
     		// 调用sdk登陆方法登陆聊天服务器
     		EMClient.getInstance().login(userName, password, new EMCallBack() {
 
     			@Override
     			public void onSuccess() {
-
     				Log.e("onSuccess", "登陆聊天服务器成功！");
     			}
 
@@ -77,8 +84,72 @@ public class Easemob extends CordovaPlugin {
     	               
     			}
     		});
+    		
             
             result = new PluginResult(PluginResult.Status.OK, "userName: " + userName + "/" + "password: " + password);
+            callback.sendPluginResult(result);
+
+            return true;
+        }else if (action.equals("addMessageListener")) {
+            callback = callbackContext;
+            PluginResult result = null;
+
+            EMMessageListener msgListener = new EMMessageListener() {
+
+				@Override
+				public void onCmdMessageReceived(List<EMMessage> arg0) {
+					// TODO Auto-generated method stub
+				}
+				@Override
+				public void onMessageChanged(EMMessage arg0, Object arg1) {
+					// TODO Auto-generated method stub
+				}
+				@Override
+				public void onMessageDeliveryAckReceived(List<EMMessage> arg0) {
+					// TODO Auto-generated method stub
+				}
+				@Override
+				public void onMessageReadAckReceived(List<EMMessage> arg0) {
+					// TODO Auto-generated method stub
+				}
+				@Override
+				public void onMessageReceived(List<EMMessage> arg0) {
+//					 JSONObject data = getMessageObject(message, extras);
+				        String format = "cordova.plugins.Easemob.receiveMessageInAndroidCallback(%s);";
+				        JSONObject jExtras;
+				        JSONArray jExtras2 = new JSONArray();
+				        for(int i=0;i<arg0.size();i++){
+				        	try {
+				        		jExtras = new JSONObject();
+				        		//body内容根据类型选择，这里用EMTextMessageBody测试
+								jExtras.put("body", ((EMTextMessageBody)arg0.get(i).getBody()).getMessage());
+								jExtras.put("from", arg0.get(i).getFrom());
+								jExtras.put("to", arg0.get(i).getTo());
+								jExtras.put("type", arg0.get(i).getType());
+								jExtras.put("userName", arg0.get(i).getUserName());
+								jExtras.put("chatType", arg0.get(i).getChatType());
+								jExtras.put("msgId", arg0.get(i).getMsgId());
+								jExtras.put("msgTime", arg0.get(i).getMsgTime());
+								jExtras2.put(i, jExtras);
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+				        }
+				        final String js = String.format(format, jExtras2);
+				        cordova.getActivity().runOnUiThread(new Runnable() {
+				            @Override
+				            public void run() {
+				                webView.loadUrl("javascript:" + js);
+				            }
+				        });
+				}
+       		 
+    		};
+    		//通过注册消息监听来接收消息
+    		EMClient.getInstance().chatManager().addMessageListener(msgListener);
+            
+            result = new PluginResult(PluginResult.Status.OK, "注册消息监听成功");
             callback.sendPluginResult(result);
 
             return true;
