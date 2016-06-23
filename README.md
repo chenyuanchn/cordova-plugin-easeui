@@ -42,4 +42,7 @@ Cordova easeui和环信sdk3.0（无实时语音、实时视频功能的SDK包）
 		cordova.plugins.Easemob.receiveMessageInAndroidCallback = function(data){
     	//对取回的消息信息进行处理   	对象四种返回类型：IMAGE TXT VOICE LOCATION
     }
+    cordova.plugins.Easemob.onMessageReadAckReceivedInAndroidCallback = function(data){
+      //对方已读回执消息    
+    }
 ```

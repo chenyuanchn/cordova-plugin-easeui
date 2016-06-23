@@ -10,6 +10,7 @@ import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.hyphenate.easeui.ui.EaseChatFragment;
+import com.hyphenate.easeui.widget.EaseTitleBar;
 import com.xc.smemobile.R;
 
 public class ChatActivity extends EaseBaseActivity{
@@ -31,6 +32,7 @@ public class ChatActivity extends EaseBaseActivity{
         
         //new出EaseChatFragment或其子类的实例
         EaseChatFragment chatFragment = new EaseChatFragment();
+        
         //传入参数
 //        Bundle args = new Bundle();
 //        args.putInt(EaseConstant.EXTRA_CHAT_TYPE, extraChatTypeInt);

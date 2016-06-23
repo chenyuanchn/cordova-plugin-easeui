@@ -32,5 +32,16 @@ module.exports = {
 				} catch(exception) {
 					console.log(exception);
 				}
+		},
+		onMessageReadAckReceivedInAndroidCallback : function(data) {
+				try{
+					console.log("cordova.plugins.Easemob.onMessageReadAckReceivedInAndroidCallback");
+					data = JSON.stringify(data);
+					var bToObj = JSON.parse(data);
+					//this.receiveNotification = bToObj;
+					//cordova.fireDocumentEvent('cordova.plugins.Easemob.receiveNotification', null);
+				} catch(exception) {
+					console.log(exception);
+				}
 		}
 };
