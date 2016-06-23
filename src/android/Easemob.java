@@ -1,6 +1,7 @@
 package com.xc.plugin.easemob;
 
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,9 +12,12 @@ import android.util.Log;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMImageMessageBody;
+import com.hyphenate.chat.EMLocationMessageBody;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.chat.EMTextMessageBody;
+import com.hyphenate.chat.EMVoiceMessageBody;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.controller.EaseUI;
 
@@ -34,8 +38,8 @@ public class Easemob extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("init")) {
-            callback = callbackContext;
+    	callback = callbackContext;
+    	if (action.equals("init")) {
             EMOptions options = new EMOptions();
          // 默认添加好友时，是不需要验证的，改成需要验证
          options.setAcceptInvitationAlways(false);
@@ -52,7 +56,6 @@ public class Easemob extends CordovaPlugin {
 
             return true;
         }else if (action.equals("login")) {
-            callback = callbackContext;
             PluginResult result = null;
 
             String userName = args.getString(0);
@@ -91,7 +94,6 @@ public class Easemob extends CordovaPlugin {
 
             return true;
         }else if (action.equals("addMessageListener")) {
-            callback = callbackContext;
             PluginResult result = null;
 
             EMMessageListener msgListener = new EMMessageListener() {
@@ -121,8 +123,29 @@ public class Easemob extends CordovaPlugin {
 				        for(int i=0;i<arg0.size();i++){
 				        	try {
 				        		jExtras = new JSONObject();
+				        		//arg0.get(i).getType()    IMAGE   TXT VOICE LOCATION
 				        		//body内容根据类型选择，这里用EMTextMessageBody测试
-								jExtras.put("body", ((EMTextMessageBody)arg0.get(i).getBody()).getMessage());
+				        		if(arg0!=null&&arg0.get(i)!=null&&arg0.get(i).getType()!=null&&arg0.get(i).getType().name()!=null){
+				        			
+				        			if(arg0.get(i).getType().name().equals("TXT")){
+				        				jExtras.put("body", ((EMTextMessageBody)arg0.get(i).getBody()).getMessage());
+				        			}else if(arg0.get(i).getType().name().equals("IMAGE")){
+				        				String filePath = ((EMImageMessageBody)arg0.get(i).getBody()).getLocalUrl();
+				        	            if (filePath != null) {
+				        	                File file = new File(filePath);
+				        	                if (!file.exists()) {
+				        	                    // send thumb nail if original image does not exist
+				        	                    filePath = ((EMImageMessageBody)arg0.get(i).getBody()).thumbnailLocalPath();
+				        	                }
+				        	                jExtras.put("body", filePath);
+				        	            }
+				        			}else if(arg0.get(i).getType().name().equals("VOICE")){
+				        				jExtras.put("body", ((EMVoiceMessageBody)arg0.get(i).getBody()).getLocalUrl());
+				        			}else if(arg0.get(i).getType().name().equals("LOCATION")){
+				        				jExtras.put("body", ((EMLocationMessageBody)arg0.get(i).getBody()).getAddress());
+				        			}
+				        			
+				        		}
 								jExtras.put("from", arg0.get(i).getFrom());
 								jExtras.put("to", arg0.get(i).getTo());
 								jExtras.put("type", arg0.get(i).getType());
@@ -154,8 +177,6 @@ public class Easemob extends CordovaPlugin {
 
             return true;
         }else if (action.equals("chat")) {//聊天页面，最主要的 fragment
-            callback = callbackContext;
-
             
             PluginResult result = null;
 
@@ -183,7 +204,6 @@ public class Easemob extends CordovaPlugin {
 
             return true;
         }else if (action.equals("conversationList")) {//会话列表页面
-        	callback = callbackContext;
         	 Intent intent = new Intent();
              intent.setClass(this.cordova.getActivity().getApplication(), ConversationListActivity.class);
              this.cordova.getActivity().startActivity(intent);
@@ -196,13 +216,22 @@ public class Easemob extends CordovaPlugin {
         	
         	
         }else if (action.equals("contactList")) {//联系人页面
-        	callback = callbackContext;
 
             Intent intent = new Intent();
             intent.setClass(this.cordova.getActivity().getApplication(), ContactListActivity.class);
             this.cordova.getActivity().startActivity(intent);
 
             PluginResult result = new PluginResult(PluginResult.Status.OK, "contactList");
+            callback.sendPluginResult(result);
+
+            return true;
+        	
+        	
+        }else if (action.equals("logout")) {//退出聊天登录
+
+        	EMClient.getInstance().logout(true);//此方法为同步方法，里面的参数 true 表示退出登录时解绑 GCM 或者小米推送的 token
+        	
+            PluginResult result = new PluginResult(PluginResult.Status.OK, "logout");
             callback.sendPluginResult(result);
 
             return true;

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.xc.smemobile.R;
 
 /**
- * 标题栏
+ * title bar
  *
  */
 public class EaseTitleBar extends RelativeLayout{
