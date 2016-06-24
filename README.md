@@ -47,4 +47,7 @@ Cordova easeui和环信sdk3.0（无实时语音、实时视频功能的SDK包）
     cordova.plugins.Easemob.onMessageReadAckReceivedInAndroidCallback = function(data){
       //对方已读回执消息    
     }
+     cordova.plugins.Easemob.onActivityResultInAndroidCallback = function(data){
+      //从聊天返回web界面触发   
+    }
 ```

@@ -7,7 +7,9 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
@@ -20,6 +22,8 @@ import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.chat.EMVoiceMessageBody;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.controller.EaseUI;
+import com.hyphenate.easeui.ui.EaseBaiduMapActivity;
+import com.xc.smemobile.R;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -246,7 +250,8 @@ public class Easemob extends CordovaPlugin {
            }
             intent.putExtra(EaseConstant.EXTRA_USER_ID, extraUserId);  
             intent.setClass(this.cordova.getActivity().getApplication(), ChatActivity.class);
-            this.cordova.getActivity().startActivity(intent);
+//            this.cordova.getActivity().startActivity(intent);
+            cordova.startActivityForResult((CordovaPlugin) this,intent, 1);  
 
             result = new PluginResult(PluginResult.Status.OK, "chat");
             callback.sendPluginResult(result);
@@ -288,5 +293,32 @@ public class Easemob extends CordovaPlugin {
         	
         }
         return false;
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == Activity.RESULT_OK) { 
+            if (requestCode == 1) { //chat回来
+            	
+
+//				 JSONObject data = getMessageObject(message, extras);
+			        String format = "cordova.plugins.Easemob.onActivityResultInAndroidCallback(%s);";
+			        JSONObject jExtras = new JSONObject();
+			        try {
+						jExtras.put("data", "从聊天返回web界面");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			        final String js = String.format(format, jExtras);
+			        cordova.getActivity().runOnUiThread(new Runnable() {
+			            @Override
+			            public void run() {
+			                webView.loadUrl("javascript:" + js);
+			            }
+			        });
+			
+            }
+//        }
     }
 }
