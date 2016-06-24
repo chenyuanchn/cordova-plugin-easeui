@@ -13,9 +13,11 @@ Cordova easeui和环信sdk3.0（无实时语音、实时视频功能的SDK包）
 
 ## 自动安装（Cordova > v5.1.1）
 
-	cordova plugin add https://github.com/chenyuanchn/cordova-plugin-easeui.git --variable APP_KEY=[注册环信的appkey] 
+	cordova plugin add https://github.com/chenyuanchn/cordova-plugin-easeui.git --variable APP_KEY=注册环信的appkey
 	
-	**注意**：安装完毕后修改包里所有的.R 改为自己项目路径 ，请调整android:targetSdkVersion为21及以下，需要去掉ui里的title，请在AndroidManifest.xml里的application中加入android:theme="@android:style/Theme.NoTitleBar" 
+	**注意**：安装完毕后修改包里所有的.R 改为自己项目路径
+	请调整android:targetSdkVersion为21及以下
+	需要去掉ui里的title，请在AndroidManifest.xml里的application中加入android:theme="@android:style/Theme.NoTitleBar" 
 
 ## 主要功能
 		
