@@ -118,48 +118,9 @@ public class Easemob extends CordovaPlugin {
 				public void onMessageReadAckReceived(List<EMMessage> arg0) {
 //					 JSONObject data = getMessageObject(message, extras);
 			        String format = "cordova.plugins.Easemob.onMessageReadAckReceivedInAndroidCallback(%s);";
-			        JSONObject jExtras;
-			        JSONArray jExtras2 = new JSONArray();
-			        for(int i=0;i<arg0.size();i++){
-			        	try {
-			        		jExtras = new JSONObject();
-			        		//arg0.get(i).getType()    IMAGE   TXT VOICE LOCATION
-			        		//body内容根据类型选择，这里用EMTextMessageBody测试
-			        		if(arg0!=null&&arg0.get(i)!=null&&arg0.get(i).getType()!=null&&arg0.get(i).getType().name()!=null){
-			        			
-			        			if(arg0.get(i).getType().name().equals("TXT")){
-			        				jExtras.put("body", ((EMTextMessageBody)arg0.get(i).getBody()).getMessage());
-			        			}else if(arg0.get(i).getType().name().equals("IMAGE")){
-			        				String filePath = ((EMImageMessageBody)arg0.get(i).getBody()).getLocalUrl();
-			        	            if (filePath != null) {
-			        	                File file = new File(filePath);
-			        	                if (!file.exists()) {
-			        	                    // send thumb nail if original image does not exist
-			        	                    filePath = ((EMImageMessageBody)arg0.get(i).getBody()).thumbnailLocalPath();
-			        	                }
-			        	                jExtras.put("body", filePath);
-			        	            }
-			        			}else if(arg0.get(i).getType().name().equals("VOICE")){
-			        				jExtras.put("body", ((EMVoiceMessageBody)arg0.get(i).getBody()).getLocalUrl());
-			        			}else if(arg0.get(i).getType().name().equals("LOCATION")){
-			        				jExtras.put("body", ((EMLocationMessageBody)arg0.get(i).getBody()).getAddress());
-			        			}
-			        			
-			        		}
-							jExtras.put("from", arg0.get(i).getFrom());
-							jExtras.put("to", arg0.get(i).getTo());
-							jExtras.put("type", arg0.get(i).getType());
-							jExtras.put("userName", arg0.get(i).getUserName());
-							jExtras.put("chatType", arg0.get(i).getChatType());
-							jExtras.put("msgId", arg0.get(i).getMsgId());
-							jExtras.put("msgTime", arg0.get(i).getMsgTime());
-							jExtras2.put(i, jExtras);
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			        }
-			        final String js = String.format(format, jExtras2);
+			        JSONArray jSONArray = new JSONArray();
+			        packageJSONArray(arg0,jSONArray);
+			        final String js = String.format(format, jSONArray);
 			        cordova.getActivity().runOnUiThread(new Runnable() {
 			            @Override
 			            public void run() {
@@ -171,48 +132,9 @@ public class Easemob extends CordovaPlugin {
 				public void onMessageReceived(List<EMMessage> arg0) {
 //					 JSONObject data = getMessageObject(message, extras);
 				        String format = "cordova.plugins.Easemob.receiveMessageInAndroidCallback(%s);";
-				        JSONObject jExtras;
-				        JSONArray jExtras2 = new JSONArray();
-				        for(int i=0;i<arg0.size();i++){
-				        	try {
-				        		jExtras = new JSONObject();
-				        		//arg0.get(i).getType()    IMAGE   TXT VOICE LOCATION
-				        		//body内容根据类型选择，这里用EMTextMessageBody测试
-				        		if(arg0!=null&&arg0.get(i)!=null&&arg0.get(i).getType()!=null&&arg0.get(i).getType().name()!=null){
-				        			
-				        			if(arg0.get(i).getType().name().equals("TXT")){
-				        				jExtras.put("body", ((EMTextMessageBody)arg0.get(i).getBody()).getMessage());
-				        			}else if(arg0.get(i).getType().name().equals("IMAGE")){
-				        				String filePath = ((EMImageMessageBody)arg0.get(i).getBody()).getLocalUrl();
-				        	            if (filePath != null) {
-				        	                File file = new File(filePath);
-				        	                if (!file.exists()) {
-				        	                    // send thumb nail if original image does not exist
-				        	                    filePath = ((EMImageMessageBody)arg0.get(i).getBody()).thumbnailLocalPath();
-				        	                }
-				        	                jExtras.put("body", filePath);
-				        	            }
-				        			}else if(arg0.get(i).getType().name().equals("VOICE")){
-				        				jExtras.put("body", ((EMVoiceMessageBody)arg0.get(i).getBody()).getLocalUrl());
-				        			}else if(arg0.get(i).getType().name().equals("LOCATION")){
-				        				jExtras.put("body", ((EMLocationMessageBody)arg0.get(i).getBody()).getAddress());
-				        			}
-				        			
-				        		}
-								jExtras.put("from", arg0.get(i).getFrom());
-								jExtras.put("to", arg0.get(i).getTo());
-								jExtras.put("type", arg0.get(i).getType());
-								jExtras.put("userName", arg0.get(i).getUserName());
-								jExtras.put("chatType", arg0.get(i).getChatType());
-								jExtras.put("msgId", arg0.get(i).getMsgId());
-								jExtras.put("msgTime", arg0.get(i).getMsgTime());
-								jExtras2.put(i, jExtras);
-							} catch (JSONException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-				        }
-				        final String js = String.format(format, jExtras2);
+				        JSONArray jSONArray = new JSONArray();
+				        packageJSONArray(arg0,jSONArray);
+				        final String js = String.format(format, jSONArray);
 				        cordova.getActivity().runOnUiThread(new Runnable() {
 				            @Override
 				            public void run() {
@@ -234,7 +156,8 @@ public class Easemob extends CordovaPlugin {
             PluginResult result = null;
 
             String extraUserId = args.getString(0);
-            String extraChatType = args.getString(1);
+            int extraChatTypeInt = args.getInt(1);
+            String extraChatType = extraChatTypeInt+"";
 
             
             Intent intent = new Intent();
@@ -246,7 +169,7 @@ public class Easemob extends CordovaPlugin {
             }
             
             if(extraChatType!=null&&!extraChatType.equals("")&&!extraChatType.equals("null")){
-            	intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, extraChatType);  
+            	intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, extraChatTypeInt);  
            }
             intent.putExtra(EaseConstant.EXTRA_USER_ID, extraUserId);  
             intent.setClass(this.cordova.getActivity().getApplication(), ChatActivity.class);
@@ -321,4 +244,51 @@ public class Easemob extends CordovaPlugin {
             }
 //        }
     }
+    
+    public void packageJSONArray(List<EMMessage> arg0,JSONArray jSONArray){
+    	JSONObject jExtras;
+        for(int i=0;i<arg0.size();i++){
+        	try {
+        		jExtras = new JSONObject();
+        		//arg0.get(i).getType()    IMAGE   TXT VOICE LOCATION
+        		//body内容根据类型选择，这里用EMTextMessageBody测试
+        		if(arg0!=null&&arg0.get(i)!=null&&arg0.get(i).getType()!=null&&arg0.get(i).getType().name()!=null){
+        			
+        			if(arg0.get(i).getType().name().equals("TXT")){
+        				jExtras.put("body", ((EMTextMessageBody)arg0.get(i).getBody()).getMessage());
+        			}else if(arg0.get(i).getType().name().equals("IMAGE")){
+        				String filePath = ((EMImageMessageBody)arg0.get(i).getBody()).getLocalUrl();
+        	            if (filePath != null) {
+        	                File file = new File(filePath);
+        	                if (!file.exists()) {
+        	                    // send thumb nail if original image does not exist
+        	                    filePath = ((EMImageMessageBody)arg0.get(i).getBody()).thumbnailLocalPath();
+        	                }
+        	                jExtras.put("body", filePath);
+        	            }
+        			}else if(arg0.get(i).getType().name().equals("VOICE")){
+        				jExtras.put("body", ((EMVoiceMessageBody)arg0.get(i).getBody()).getLocalUrl());
+        			}else if(arg0.get(i).getType().name().equals("LOCATION")){
+        				jExtras.put("body", ((EMLocationMessageBody)arg0.get(i).getBody()).getAddress());
+        			}
+        			
+        		}
+				jExtras.put("from", arg0.get(i).getFrom());
+				jExtras.put("to", arg0.get(i).getTo());
+				jExtras.put("type", arg0.get(i).getType());
+				jExtras.put("userName", arg0.get(i).getUserName());
+				jExtras.put("chatType", arg0.get(i).getChatType());
+				jExtras.put("msgId", arg0.get(i).getMsgId());
+				jExtras.put("msgTime", arg0.get(i).getMsgTime());
+				jSONArray.put(i, jExtras);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+    	
+    	
+    }
+    
+    
 }
